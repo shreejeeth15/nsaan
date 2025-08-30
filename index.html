@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <meta name="description" content="Digital portfolio of Shreejeeth A — JavaScript developer. Projects, skills, education, and contact." />
+  <meta name="author" content="Shreejeeth A" />
+  <title>Shreejeeth A | JavaScript Developer Portfolio</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1220;            /* dark navy */
+      --panel: #0f172a;         /* slate-900 */
+      --soft: #111827;          /* gray-900 */
+      --muted: #94a3b8;         /* slate-400 */
+      --text: #e5e7eb;          /* gray-200 */
+      --brand: #0ea5e9;         /* sky-500 */
+      --brand-2: #22d3ee;       /* cyan-400 */
+      --accent: #a78bfa;        /* violet-400 */
+      --ok: #34d399;            /* emerald-400 */
+      --warn: #f59e0b;          /* amber-500 */
+      --danger: #f87171;        /* red-400 */
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+      --transition: 180ms ease;
+    }
+    /* Light mode */
+    .light {
+      --bg: #f8fafc;
+      --panel: #ffffff;
+      --soft: #f1f5f9;
+      --muted: #475569;
+      --text: #0f172a;
+      --brand: #0284c7;
+      --brand-2: #0891b2;
+      --accent: #7c3aed;
+      --ok: #059669;
+      --warn: #b45309;
+      --danger: #dc2626;
+      --shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 90% -10%, rgba(14,165,233,0.12), transparent),
+                  radial-gradient(1000px 500px at -20% 20%, rgba(167,139,250,0.12), transparent),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      letter-spacing: 0.1px;
+    }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container { width: min(1120px, 92%); margin: 0 auto; }
+
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(10px);
+      background: color-mix(in oklab, var(--bg), transparent 30%);
+      border-bottom: 1px solid color-mix(in oklab, var(--muted), transparent 70%);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: 0.4px; }
+    .logo .mark { width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, var(--brand), var(--accent)); display: grid; place-items: center; box-shadow: var(--shadow); }
+    .logo svg { width: 18px; height: 18px; fill: white; }
+    .nav a { margin: 0 10px; font-weight: 500; opacity: 0.9; }
+    .nav .cta { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #fff; padding: 10px 16px; border-radius: 12px; box-shadow: var(--shadow); border: none; cursor: pointer; transition: transform var(--transition); }
+    .nav .cta:hover { transform: translateY(-2px); }
+    .mode { background: var(--soft); border: 1px solid color-mix(in oklab, var(--muted), transparent 70%); color: var(--text); border-radius: 12px; padding: 8px 12px; cursor: pointer; }
+
+    /* Hero */
+    .hero { padding: 64px 0 36px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 36px; align-items: center; }
+    .tag { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid color-mix(in oklab, var(--muted), transparent 60%); border-radius: 999px; background: color-mix(in oklab, var(--panel), transparent 30%); font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; }
+    h1 { font-size: clamp(32px, 3.6vw, 54px); line-height: 1.1; margin: 12px 0 8px; }
+    .subtitle { font-size: clamp(15px, 1.6vw, 18px); color: var(--muted); margin-bottom: 22px; }
+    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px; border: 1px solid color-mix(in oklab, var(--muted), transparent 60%);
+      background: var(--panel); color: var(--text); padding: 12px 16px; border-radius: 14px; cursor: pointer; text-decoration: none; transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .btn.primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #fff; border: none; box-shadow: var(--shadow); }
+    .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+    .hero-image { aspect-ratio: 1 / 1; border-radius: 22px; background: linear-gradient(135deg, color-mix(in oklab, var(--brand), transparent 70%), color-mix(in oklab, var(--accent), transparent 70%)); border: 1px dashed color-mix(in oklab, var(--muted), transparent 40%); display: grid; place-items: center; color: var(--muted); }
+
+    section { padding: 28px 0; }
+    .grid { display: grid; gap: 18px; }
+    .two { grid-template-columns: repeat(2, 1fr); }
+    .three { grid-template-columns: repeat(3, 1fr); }
+
+    .card { background: color-mix(in oklab, var(--panel), transparent 0%); border: 1px solid color-mix(in oklab, var(--muted), transparent 70%); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); }
+    .card h3 { margin-top: 0; }
+
+    .section-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .section-title h2 { margin: 0; font-size: 22px; }
+
+    /* Skills */
+    .skill { display: grid; grid-template-columns: 160px 1fr 56px; gap: 12px; align-items: center; padding: 8px 0; }
+    .bar { height: 10px; border-radius: 999px; background: color-mix(in oklab, var(--muted), transparent 82%); overflow: hidden; }
+    .bar > span { display: block; height: 100%; background: linear-gradient(90deg, var(--brand), var(--accent)); border-radius: inherit; }
+    .pct { text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+    /* Timeline */
+    .timeline { position: relative; padding-left: 22px; }
+    .timeline::before { content: ""; position: absolute; left: 7px; top: 0; bottom: 0; width: 2px; background: color-mix(in oklab, var(--muted), transparent 70%); border-radius: 999px; }
+    .t-item { position: relative; margin: 12px 0; padding-left: 10px; }
+    .t-item::before { content: ""; position: absolute; left: -4px; top: 10px; width: 12px; height: 12px; background: linear-gradient(135deg, var(--brand), var(--accent)); border-radius: 999px; box-shadow: 0 0 0 3px color-mix(in oklab, var(--panel), transparent 0%); }
+    .t-meta { font-size: 12px; color: var(--muted); }
+
+    /* Projects */
+    .project { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    .p-thumb { aspect-ratio: 16 / 9; border-radius: 14px; background: linear-gradient(135deg, color-mix(in oklab, var(--brand), transparent 70%), color-mix(in oklab, var(--accent), transparent 70%)); display: grid; place-items: center; color: var(--muted); border: 1px dashed color-mix(in oklab, var(--muted), transparent 40%); }
+    .p-actions { display: flex; gap: 10px; }
+
+    /* Contact */
+    form { display: grid; gap: 10px; }
+    input, textarea { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1px solid color-mix(in oklab, var(--muted), transparent 70%); background: var(--panel); color: var(--text); }
+    textarea { min-height: 120px; resize: vertical; }
+    .note { font-size: 13px; color: var(--muted); }
+
+    footer { border-top: 1px solid color-mix(in oklab, var(--muted), transparent 70%); padding: 20px 0 40px; color: var(--muted); }
+
+    /* Responsive */
+    @media (max-width: 920px) {
+      .hero { grid-template-columns: 1fr; }
+      .two { grid-template-columns: 1fr; }
+      .three { grid-template-columns: 1fr; }
+      .skill { grid-template-columns: 120px 1fr 44px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo" aria-label="Logo — Shreejeeth A">
+        <span class="mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" role="img" aria-label="S">
+            <path d="M12 2c5.523 0 10 4.477 10 10 0 4.418-2.87 8.166-6.84 9.5-.57.2-1.16-.18-1.16-.79v-1.3c0-.34.23-.64.56-.74A7.5 7.5 0 1 0 6.5 12c0 .83.14 1.64.41 2.39.12.34-.02.73-.33.92l-1.12.67c-.5.3-1.14.08-1.37-.44A9.97 9.97 0 0 1 2 12C2 6.477 6.477 2 12 2Z"/>
+          </svg>
+        </span>
+        <span>Shreejeeth A</span>
+      </div>
+      <nav aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div style="display:flex; gap:10px; align-items:center;">
+        <button id="modeToggle" class="mode" aria-pressed="false" aria-label="Toggle light mode">☀️/🌙</button>
+        <a class="cta" href="#contact">Hire Me</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero" aria-label="Intro">
+      <div>
+        <span class="tag">Open to Work • JavaScript</span>
+        <h1>JavaScript Developer crafting clean, fast, and user‑friendly web apps.</h1>
+        <p class="subtitle">Hi, I’m <strong>Shreejeeth A</strong> — B.Sc. Computer Science graduate from <strong>KPR College of Arts, Science and Research</strong>. I build responsive interfaces, wire up APIs, and love shaving milliseconds off load times.</p>
+        <div class="hero-cta">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn" href="./Shreejeeth_A_Resume.pdf" download>Download Résumé</a>
+          <a class="btn" href="#contact">Contact</a>
+        </div>
+        <p class="note">Job role focus: <strong>JavaScript Developer</strong> (Frontend • Full‑Stack basics)</p>
+      </div>
+      <div class="hero-image" aria-label="Profile placeholder">
+        <div>
+          <div style="font-weight:700; font-size:22px;">Upload Your Photo</div>
+          <div style="font-size:14px; color:var(--muted)">Replace this box with your headshot.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK STATS -->
+    <section aria-labelledby="stats-title">
+      <div class="section-title"><h2 id="stats-title">Quick Highlights</h2></div>
+      <div class="grid three">
+        <div class="card">
+          <h3>Core Strengths</h3>
+          <p>Semantic HTML, modern CSS, ES6+, responsive design, REST/JSON, accessibility (WCAG), performance tuning.</p>
+        </div>
+        <div class="card">
+          <h3>Toolbox</h3>
+          <p>VS Code, Git & GitHub, Chrome DevTools, Node.js & npm, Vite, Postman, Figma basics.</p>
+        </div>
+        <div class="card">
+          <h3>Soft Skills</h3>
+          <p>Clear communication, problem solving, attention to detail, teamwork, continuous learning.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" aria-labelledby="about-title">
+      <div class="section-title"><h2 id="about-title">About Me</h2></div>
+      <div class="card">
+        <p>I’m a detail‑oriented JavaScript developer focused on building fast, accessible, and maintainable web interfaces. I enjoy turning UX ideas into clean code and connecting frontends to APIs. My learning routine includes reading MDN, experimenting with new browser features, and contributing to small open‑source issues.</p>
+        <ul>
+          <li><strong>Location:</strong> Coimbatore, India (open to remote)</li>
+          <li><strong>Availability:</strong> Full‑time • Internship • Freelance</li>
+          <li><strong>Languages:</strong> English, Tamil</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" aria-labelledby="skills-title">
+      <div class="section-title"><h2 id="skills-title">Skills</h2></div>
+      <div class="card">
+        <div class="skill"><strong>HTML5 / Accessibility</strong><div class="bar"><span style="width: 90%"></span></div><div class="pct">90%</div></div>
+        <div class="skill"><strong>CSS3 / Tailwind / Flex & Grid</strong><div class="bar"><span style="width: 85%"></span></div><div class="pct">85%</div></div>
+        <div class="skill"><strong>JavaScript (ES6+)</strong><div class="bar"><span style="width: 88%"></span></div><div class="pct">88%</div></div>
+        <div class="skill"><strong>React Basics</strong><div class="bar"><span style="width: 70%"></span></div><div class="pct">70%</div></div>
+        <div class="skill"><strong>Node.js Fundamentals</strong><div class="bar"><span style="width: 65%"></span></div><div class="pct">65%</div></div>
+        <div class="skill"><strong>Git & GitHub</strong><div class="bar"><span style="width: 80%"></span></div><div class="pct">80%</div></div>
+      </div>
+      <p class="note">Tip: adjust percentages to reflect your confidence. Keep them honest and consistent with your projects.</p>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" aria-labelledby="projects-title">
+      <div class="section-title">
+        <h2 id="projects-title">Projects</h2>
+        <a class="btn" href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub Profile →</a>
+      </div>
+      <div class="grid two">
+        <article class="card project" aria-labelledby="proj1-title">
+          <div class="p-thumb">Screenshot / GIF Placeholder</div>
+          <div>
+            <h3 id="proj1-title">TaskFlow — Vanilla JS To‑Do App</h3>
+            <p>Accessible to‑do app with CRUD operations, localStorage persistence, keyboard navigation, and filter/search. Built with semantic HTML, CSS Grid, and modular ES6.</p>
+            <ul>
+              <li>Performance: <strong>~1KB</strong> JS per module, lazy‑loading icons</li>
+              <li>Testing: simple unit functions with <code>vitest</code></li>
+              <li>Live Demo: <a href="#">link</a> • Code: <a href="#">repo</a></li>
+            </ul>
+            <div class="p-actions">
+              <a class="btn" href="#">Live</a>
+              <a class="btn" href="#">Source</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card project" aria-labelledby="proj2-title">
+          <div class="p-thumb">Screenshot / GIF Placeholder</div>
+          <div>
+            <h3 id="proj2-title">WeatherLite — API‑driven Widget</h3>
+            <p>Minimal weather widget using the Fetch API and async/await with graceful error states and skeleton loading. Focus on clean state management without frameworks.</p>
+            <ul>
+              <li>Tech: HTML, CSS, JS (modules), Fetch</li>
+              <li>Highlights: API abstraction, retry logic, accessibility labels</li>
+              <li>Live Demo: <a href="#">link</a> • Code: <a href="#">repo</a></li>
+            </ul>
+            <div class="p-actions">
+              <a class="btn" href="#">Live</a>
+              <a class="btn" href="#">Source</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" aria-labelledby="exp-title">
+      <div class="section-title"><h2 id="exp-title">Experience</h2></div>
+      <div class="card timeline">
+        <div class="t-item">
+          <h3>Freelance — Frontend Developer</h3>
+          <div class="t-meta">Jan 2025 – Present • Remote</div>
+          <p>Built landing pages and admin dashboards for small businesses with responsive layouts, accessibility checks, and Lighthouse performance > 90.</p>
+        </div>
+        <div class="t-item">
+          <h3>Academic Projects — KPR College</h3>
+          <div class="t-meta">2022 – 2024</div>
+          <p>Worked on coursework projects involving DOM manipulation, form validation, and JSON APIs. Collaborated in teams using Git and pull requests.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" aria-labelledby="edu-title">
+      <div class="section-title"><h2 id="edu-title">Education</h2></div>
+      <div class="card">
+        <h3>B.Sc. Computer Science</h3>
+        <p><strong>KPR College of Arts, Science and Research</strong> • Graduated: <em>Year</em></p>
+        <ul>
+          <li>Relevant coursework: Data Structures, Web Technologies, DBMS, OOP.</li>
+          <li>Clubs: Coding Club, Hackathon participation.</li>
+          <li>Awards: Add if any (e.g., Department Topper, Hackathon finalist).</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS / ACHIEVEMENTS -->
+    <section aria-labelledby="certs-title">
+      <div class="section-title"><h2 id="certs-title">Certifications & Achievements</h2></div>
+      <div class="grid two">
+        <div class="card">
+          <ul>
+            <li>JavaScript Algorithms and Data Structures — freeCodeCamp</li>
+            <li>Responsive Web Design — freeCodeCamp</li>
+            <li>Version Control with Git — Coursera</li>
+          </ul>
+        </div>
+        <div class="card">
+          <ul>
+            <li>Finalist — College Hackathon (Front‑end)</li>
+            <li>Built personal UI component library (WIP)</li>
+            <li>100+ GitHub contributions in the last year</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="section-title"><h2 id="contact-title">Contact</h2></div>
+      <div class="grid two">
+        <div class="card">
+          <form id="contactForm" novalidate>
+            <label>
+              <span>Name</span>
+              <input type="text" name="name" placeholder="Your name" required />
+            </label>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" placeholder="you@example.com" required />
+            </label>
+            <label>
+              <span>Message</span>
+              <textarea name="message" placeholder="How can I help?" required></textarea>
+            </label>
+            <button class="btn primary" type="submit">Send Message</button>
+            <p class="note">This sample form uses client‑side validation only. Hook it to a backend or a service like Formspree when deploying.</p>
+          </form>
+        </div>
+        <div class="card">
+          <h3>Connect</h3>
+          <ul>
+            <li>Email: <a href="mailto:shreejeeth@example.com">shreejeeth@example.com</a></li>
+            <li>Phone/WhatsApp: <a href="tel:+91XXXXXXXXXX">+91‑XXXXXXXXXX</a></li>
+            <li>LinkedIn: <a href="https://www.linkedin.com/in/your‑profile" target="_blank" rel="noopener">your‑profile</a></li>
+            <li>GitHub: <a href="https://github.com/yourusername" target="_blank" rel="noopener">yourusername</a></li>
+            <li>Location: Coimbatore, India</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap: wrap;">
+        <small>© <span id="year"></span> Shreejeeth A. All rights reserved.</small>
+        <div style="display:flex; gap:8px;">
+          <a class="btn" href="#">Privacy</a>
+          <a class="btn" href="#">Terms</a>
+          <a class="btn" href="#top">Back to top ↑</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle with localStorage
+    const root = document.documentElement;
+    const toggle = document.getElementById('modeToggle');
+    const saved = localStorage.getItem('pref-theme');
+    if (saved === 'light') document.body.classList.add('light');
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      const mode = document.body.classList.contains('light') ? 'light' : 'dark';
+      localStorage.setItem('pref-theme', mode);
+      toggle.setAttribute('aria-pressed', mode === 'light');
+    });
+
+    // Basic contact form validation + demo handler
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      const errors = [];
+      if (!data.name || data.name.trim().length < 2) errors.push('Please enter a valid name.');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errors.push('Please enter a valid email.');
+      if (!data.message || data.message.trim().length < 10) errors.push('Message should be at least 10 characters.');
+      if (errors.length) {
+        alert(errors.join('\n'));
+        return;
+      }
+      alert('Thanks, ' + data.name + '! This demo form is not wired to a backend.');
+      form.reset();
+    });
+  </script>
+</body>
+</html>
